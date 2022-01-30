@@ -21,8 +21,6 @@ public class DroneMainController {
 	public ResponseEntity<MessageResponse> registerDrone(@RequestBody DroneRequest dronerequest) {
 		MessageResponse newDrone = droneService.register(dronerequest);
 		return new ResponseEntity<MessageResponse>(newDrone, HttpStatus.CREATED);
-		// return new ResponseEntity<>(newDrone, HttpStatus.CREATED);
-
 	}
 
 }

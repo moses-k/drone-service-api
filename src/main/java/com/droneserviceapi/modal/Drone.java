@@ -7,12 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "tbl_drone")
 public class Drone {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@Column(name = "id", columnDefinition = "VARCHAR(16) NOT NULL")
+//	private Integer id;
+	
 	@Column(name = "serial_no", columnDefinition = "VARCHAR(16) NOT NULL")
 	private String serialNumber;
 	

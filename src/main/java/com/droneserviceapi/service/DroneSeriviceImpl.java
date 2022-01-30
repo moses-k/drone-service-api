@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.droneserviceapi.data.payload.request.DroneRequest;
 import com.droneserviceapi.data.payload.response.MessageResponse;
 import com.droneserviceapi.modal.Drone;
+import com.droneserviceapi.repository.DroneRepository;
 
 @Service
 public class DroneSeriviceImpl implements DroneService{
@@ -21,7 +22,6 @@ public class DroneSeriviceImpl implements DroneService{
 		newdrone.setWeight(droneRequest.getWeight());
 		newdrone.setBattery(droneRequest.getBattery());
 		newdrone.setState(droneRequest.getState());
-		
 		droneRepository.save(newdrone);
 		
 		return new MessageResponse("New Drone created successfully");
