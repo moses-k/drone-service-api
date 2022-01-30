@@ -3,12 +3,14 @@ package com.droneserviceapi.service;
 
 import org.springframework.stereotype.Service;
 
+import com.droneserviceapi.data.payload.request.DroneRequest;
+import com.droneserviceapi.data.payload.response.MessageResponse;
 import com.droneserviceapi.modal.DroneDto;
 
 @Service
 public class DroneSeriviceImpl implements DroneService{
 
-	public String register(DroneDto drone) {
+	public MessageResponse register(DroneRequest drone) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -32,6 +34,8 @@ public class DroneSeriviceImpl implements DroneService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 
 
