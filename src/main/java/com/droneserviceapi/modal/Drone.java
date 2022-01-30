@@ -2,11 +2,16 @@ package com.droneserviceapi.modal;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,15 +20,22 @@ public class Drone {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "Serial_no")
+	@Column(name = "serial_no", columnDefinition = "VARCHAR(16) NOT NULL")
 	private Integer serialNumber;
 	
-	@Column(name = "weight")
+	@Column(name = "weight", columnDefinition = "VARCHAR(10) NOT NULL")
 	private String weight;
 	
-	@Column(name = "battery")
+	@Column(name = "battery", columnDefinition = "VARCHAR(10) NOT NULL")
 	private String battery;
 	
-	//private Set<State> states;
+	@Column(name = "model", columnDefinition = "VARCHAR(50) NOT NULL")//Lightweight, Middleweight, Cruiserweight, Heavyweight
+	private String model;
+
+	@Column(name = "drone_state", columnDefinition = "VARCHAR(20) NOT NULL")//IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING
+	private String state;
+	//@OneToMany(cascade = CascadeType.ALL)
+//	@JoinTable(name = "drone_state",joinColumns = @JoinColumn(name = "serial_no"), inverseJoinColumns = @JoinColumn(name = "state_id"))
+//	private Set<State> states;
 	
 }
