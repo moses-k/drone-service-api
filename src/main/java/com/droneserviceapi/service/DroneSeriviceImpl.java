@@ -1,31 +1,43 @@
 package com.droneserviceapi.service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.droneserviceapi.data.payload.request.DroneRequest;
 import com.droneserviceapi.data.payload.response.MessageResponse;
-import com.droneserviceapi.modal.DroneDto;
+import com.droneserviceapi.modal.Drone;
 
 @Service
 public class DroneSeriviceImpl implements DroneService{
 
-	public MessageResponse register(DroneRequest drone) {
+	@Autowired
+	DroneRepository droneRepository;
+	public MessageResponse register(DroneRequest droneRequest) {
+		
+		Drone newdrone = new Drone();
+		newdrone.setSerialNumber(droneRequest.getSerialNumber());
+		newdrone.setModel(droneRequest.getModel());
+		newdrone.setWeight(droneRequest.getWeight());
+		newdrone.setBattery(droneRequest.getBattery());
+		newdrone.setState(droneRequest.getState());
+		
+		droneRepository.save(newdrone);
+		
+		return new MessageResponse("New Drone created successfully");
+	}
+
+	public Drone getBateryLevel(String serialno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public DroneDto getBateryLevel(String serialno) {
+	public Drone getDroneBySerialNo(String serialno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public DroneDto getDroneBySerialNo(String serialno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public DroneDto getAvailabeDrones() {
+	public Drone getAvailabeDrones() {
 		// TODO Auto-generated method stub
 		return null;
 	}

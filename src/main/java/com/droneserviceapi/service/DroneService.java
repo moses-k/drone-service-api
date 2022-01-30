@@ -4,18 +4,18 @@ import org.springframework.stereotype.Component;
 
 import com.droneserviceapi.data.payload.request.DroneRequest;
 import com.droneserviceapi.data.payload.response.MessageResponse;
-import com.droneserviceapi.modal.DroneDto;
+import com.droneserviceapi.modal.Drone;
 
 @Component
 public interface DroneService {
 	
 	MessageResponse register(DroneRequest drone);
 
-	DroneDto getBateryLevel(String serialno);
+	Drone getBateryLevel(String serialno);
 	
-	DroneDto getDroneBySerialNo(String serialno);
+	Drone getDroneBySerialNo(String serialno);
 	
-	DroneDto getAvailabeDrones();
+	Drone getAvailabeDrones();
 	
 	void loadDrone(int serialno);
 	
