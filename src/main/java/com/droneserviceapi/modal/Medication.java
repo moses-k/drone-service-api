@@ -27,6 +27,52 @@ public class Medication {
 	
 	@Column(name = "medication_image")
 	private String image;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getWeight() {
+		return weight;
+	}
+
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	@Override
+	public String toString() {
+		return "Medication [id=" + id + ", name=" + name + ", weight=" + weight + ", code=" + code + ", image=" + image
+				+ "]";
+	}
 	
 
 }
