@@ -1,27 +1,20 @@
 package com.droneserviceapi.modal;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_drone")
-public class Drone {
+public class DroneDto {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "serial_no", columnDefinition = "VARCHAR(16) NOT NULL")
-	private Integer serialNumber;
+	private String serialNumber;
 	
 	@Column(name = "weight", columnDefinition = "VARCHAR(10) NOT NULL")
 	private String weight;
@@ -38,11 +31,11 @@ public class Drone {
     //@JoinTable(name = "drone_state",joinColumns = @JoinColumn(name = "serial_no"), inverseJoinColumns = @JoinColumn(name = "drone_id"))
     //private Set<State> states;
 
-	public Integer getSerialNumber() {
+	public String getSerialNumber() {
 		return serialNumber;
 	}
 
-	public void setSerialNumber(Integer serialNumber) {
+	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
 
