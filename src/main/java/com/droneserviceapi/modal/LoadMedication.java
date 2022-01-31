@@ -1,35 +1,46 @@
 package com.droneserviceapi.modal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "medication_loads")
+@Table(name = "drone_load")
 public class LoadMedication {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "trackingid")
 	private Integer trackingId;
-	
-	@Column(name = "drone_serialno", columnDefinition = "VARCHAR(16) NOT NULL")
-	private String droneSerialNumber;
-	
+
 	@Column(name = "medication_code", columnDefinition = "VARCHAR(16) NOT NULL")
 	private String medicatioCode;
-	
+
 	@Column(name = "source", columnDefinition = "VARCHAR(30) NOT NULL")
 	private String source;
-	
+
 	@Column(name = "destination", columnDefinition = "VARCHAR(30) NOT NULL")
 	private String destination;
-	
+
 	@Column(name = "createdon", columnDefinition = "VARCHAR(30) NOT NULL")
 	private String createdon;
+
+	@OneToOne(mappedBy = "loadMedication")
+	private MedicalDelivery medicalDelivery;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_serial_no", referencedColumnName = "serial_no")
+	private Drone drone;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_code", referencedColumnName = "code")
+	private Medication medication;
 
 	public Integer getTrackingId() {
 		return trackingId;
@@ -37,14 +48,6 @@ public class LoadMedication {
 
 	public void setTrackingId(Integer trackingId) {
 		this.trackingId = trackingId;
-	}
-
-	public String getDroneSerialNumber() {
-		return droneSerialNumber;
-	}
-
-	public void setDroneSerialNumber(String droneSerialNumber) {
-		this.droneSerialNumber = droneSerialNumber;
 	}
 
 	public String getMedicatioCode() {
@@ -79,11 +82,35 @@ public class LoadMedication {
 		this.createdon = createdon;
 	}
 
+	public MedicalDelivery getMedicalDelivery() {
+		return medicalDelivery;
+	}
+
+	public void setMedicalDelivery(MedicalDelivery medicalDelivery) {
+		this.medicalDelivery = medicalDelivery;
+	}
+
+	public Drone getDrone() {
+		return drone;
+	}
+
+	public void setDrone(Drone drone) {
+		this.drone = drone;
+	}
+
+	public Medication getMedication() {
+		return medication;
+	}
+
+	public void setMedication(Medication medication) {
+		this.medication = medication;
+	}
+
 	@Override
 	public String toString() {
-		return "LoadMedication [trackingId=" + trackingId + ", droneSerialNumber=" + droneSerialNumber
-				+ ", medicatioCode=" + medicatioCode + ", source=" + source + ", destination=" + destination
-				+ ", createdon=" + createdon + "]";
+		return "LoadMedication [trackingId=" + trackingId + ", medicatioCode=" + medicatioCode + ", source=" + source
+				+ ", destination=" + destination + ", createdon=" + createdon + ", medicalDelivery=" + medicalDelivery
+				+ ", drone=" + drone + ", medication=" + medication + "]";
 	}
 
 }
