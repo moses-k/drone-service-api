@@ -1,6 +1,8 @@
 package com.droneserviceapi.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ import com.droneserviceapi.repository.DroneRepository;
 public class DroneSeriviceImpl implements DroneService{
 
 	@Autowired
-	DroneRepository droneRepository;
+	private DroneRepository droneRepository;
 	
 	public MessageResponse register(DroneRequest droneRequest) {
 		Drone newdrone = new Drone();
@@ -23,13 +25,13 @@ public class DroneSeriviceImpl implements DroneService{
 		newdrone.setBattery(droneRequest.getBattery());
 		newdrone.setState(droneRequest.getState());
 		droneRepository.save(newdrone);
-		
-		return new MessageResponse("New Drone created successfully");
+	return new MessageResponse("New Drone created successfully");
 	}
 
-	public Drone getBateryLevel(String serialno) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Drone> getBateryLevel(String serialno) {
+		
+		System.out.println("=========================== serialno "+ serialno);
+	    return droneRepository.findBySerialNumber(serialno);
 	}
 
 	public Drone getDroneBySerialNo(String serialno) {
@@ -37,9 +39,9 @@ public class DroneSeriviceImpl implements DroneService{
 		return null;
 	}
 
-	public Drone getAvailabeDrones() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Drone> getAvailabeDrones() {
+		String state = "IDLE";
+       return droneRepository.findAllByState(state);
 	}
 
 	public void loadDrone(int serialno) {

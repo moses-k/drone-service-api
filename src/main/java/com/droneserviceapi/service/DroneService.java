@@ -1,5 +1,7 @@
 package com.droneserviceapi.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.droneserviceapi.data.payload.request.DroneRequest;
@@ -11,11 +13,11 @@ public interface DroneService {
 	
 	MessageResponse register(DroneRequest drone);
 
-	Drone getBateryLevel(String serialno);
+	List<Drone> getBateryLevel(String serialno);
 	
 	Drone getDroneBySerialNo(String serialno);
 	
-	Drone getAvailabeDrones();
+	List<Drone> getAvailabeDrones();
 	
 	void loadDrone(int serialno);
 	
