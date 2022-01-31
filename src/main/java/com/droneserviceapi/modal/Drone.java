@@ -1,5 +1,7 @@
 package com.droneserviceapi.modal;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,8 +23,8 @@ public class Drone {
 	@Column(name = "serial_no", columnDefinition = "VARCHAR(16) NOT NULL")
 	private String serialNumber;
 	
-	@Column(name = "weight", columnDefinition = "VARCHAR(10) NOT NULL")
-	private String weight;
+	@Column(name = "weight_limit", columnDefinition = "VARCHAR(10) NOT NULL")
+	private String weightLimit;
 	
 	@Column(name = "battery", columnDefinition = "VARCHAR(10) NOT NULL")
 	private String battery;
@@ -32,6 +34,9 @@ public class Drone {
 
 	@Column(name = "drone_state", columnDefinition = "VARCHAR(20) NOT NULL")//IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING
 	private String state;
+	
+	@Column(name = "createdon", columnDefinition = "TIMESTAMP NULL DEFAULT NULL")
+	private Date createdon;
 	//@OneToMany(cascade = CascadeType.ALL)
     //@JoinTable(name = "drone_state",joinColumns = @JoinColumn(name = "serial_no"), inverseJoinColumns = @JoinColumn(name = "drone_id"))
     //private Set<State> states;
@@ -42,14 +47,6 @@ public class Drone {
 
 	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
-	}
-
-	public String getWeight() {
-		return weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
 	}
 
 	public String getBattery() {
@@ -76,10 +73,28 @@ public class Drone {
 		this.state = state;
 	}
 
+	public Date getCreatedon() {
+		return createdon;
+	}
+
+	public void setCreatedon(Date createdon) {
+		this.createdon = createdon;
+	}
+
+	public String getWeightLimit() {
+		return weightLimit;
+	}
+
+	public void setWeightLimit(String weightLimit) {
+		this.weightLimit = weightLimit;
+	}
+
 	@Override
 	public String toString() {
-		return "Drone [serialNumber=" + serialNumber + ", weight=" + weight + ", battery=" + battery + ", model="
-				+ model + ", state=" + state + "]";
+		return "Drone [serialNumber=" + serialNumber + ", weightLimit=" + weightLimit + ", battery=" + battery + ", model="
+				+ model + ", state=" + state + ", createdon=" + createdon + "]";
 	}
+
+
 	
 }

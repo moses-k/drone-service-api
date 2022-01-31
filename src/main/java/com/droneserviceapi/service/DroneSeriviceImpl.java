@@ -14,12 +14,12 @@ public class DroneSeriviceImpl implements DroneService{
 
 	@Autowired
 	DroneRepository droneRepository;
+	
 	public MessageResponse register(DroneRequest droneRequest) {
-		
 		Drone newdrone = new Drone();
 		newdrone.setSerialNumber(droneRequest.getSerialNumber());
 		newdrone.setModel(droneRequest.getModel());
-		newdrone.setWeight(droneRequest.getWeight());
+		newdrone.setWeightLimit(droneRequest.getWeightLimit());
 		newdrone.setBattery(droneRequest.getBattery());
 		newdrone.setState(droneRequest.getState());
 		droneRepository.save(newdrone);

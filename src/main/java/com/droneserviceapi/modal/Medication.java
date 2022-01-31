@@ -2,8 +2,6 @@ package com.droneserviceapi.modal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,9 +10,8 @@ import javax.persistence.Table;
 public class Medication {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", columnDefinition = "INT NOT NULL")
-	private int id;
+	@Column(name = "code", columnDefinition = "VARCHAR(16) NOT NULL")
+	private String code;
 	
 	@Column(name = "name", columnDefinition = "VARCHAR(30) NOT NULL")
 	private String name;
@@ -22,19 +19,8 @@ public class Medication {
 	@Column(name="weight", columnDefinition = "VARCHAR(10) NOT NULL")
 	private String weight;
 	
-	@Column(name = "code", columnDefinition = "VARCHAR(30) NOT NULL")
-	private String code;
-	
 	@Column(name = "medication_image")
 	private String image;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -70,7 +56,7 @@ public class Medication {
 
 	@Override
 	public String toString() {
-		return "Medication [id=" + id + ", name=" + name + ", weight=" + weight + ", code=" + code + ", image=" + image
+		return "Medication [code=" + code + ", name=" + name + ", weight=" + weight + ",  image=" + image
 				+ "]";
 	}
 	

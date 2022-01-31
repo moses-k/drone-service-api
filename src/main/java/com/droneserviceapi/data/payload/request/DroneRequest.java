@@ -15,7 +15,7 @@ public class DroneRequest {
 	
 	@NotBlank
 	@NotNull
-	private String weight;
+	private String weightLimit;
 
 	@NotBlank
 	@NotNull
@@ -37,16 +37,16 @@ public class DroneRequest {
 		return model;
 	}
 
+	public String getWeightLimit() {
+		return weightLimit;
+	}
+
+	public void setWeightLimit(String weightLimit) {
+		this.weightLimit = weightLimit;
+	}
+
 	public void setModel(String model) {
 		this.model = model;
-	}
-
-	public String getWeight() {
-		return weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
 	}
 
 	public String getBattery() {

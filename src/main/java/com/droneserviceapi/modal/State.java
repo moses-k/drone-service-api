@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "drone_state")
+@Table(name = "drone_monitor")
 public class State {
 	
 	@Id
@@ -21,8 +21,11 @@ public class State {
 	@Column(name = "drone_id", columnDefinition = "VARCHAR(16) NOT NULL")
 	private String serialNumber;
 	
-	@Column(name = "state_description", columnDefinition = "VARCHAR(30) NOT NULL")
-	private String stateDescription;
+	@Column(name = "state", columnDefinition = "VARCHAR(30) NOT NULL")
+	private String state;
+	
+	@Column(name = "status", columnDefinition = "VARCHAR(30) NOT NULL") //Closed, Open
+	private String status;
 	
 	@Column(name = "createdon", columnDefinition = "TIMESTAMP NULL DEFAULT NULL")
 	private Date createdon;
@@ -44,11 +47,11 @@ public class State {
 	}
 
 	public String getStateDescription() {
-		return stateDescription;
+		return state;
 	}
 
 	public void setStateDescription(String stateDescription) {
-		this.stateDescription = stateDescription;
+		this.state = stateDescription;
 	}
 
 	public Date getCreatedon() {
@@ -61,7 +64,7 @@ public class State {
 
 	@Override
 	public String toString() {
-		return "State [id=" + id + ", serialNumber=" + serialNumber + ", stateDescription=" + stateDescription
+		return "State [id=" + id + ", serialNumber=" + serialNumber + ", state=" + state
 				+ ", createdon=" + createdon + "]";
 	}
 
