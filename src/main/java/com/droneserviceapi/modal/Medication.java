@@ -3,7 +3,6 @@ package com.droneserviceapi.modal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,8 +22,8 @@ public class Medication {
 	@Column(name = "medication_image")
 	private String image;
 
-	@OneToOne(mappedBy = "medication")
-	private LoadMedication loadMedication;
+	//@OneToOne(mappedBy = "medication")
+	//private LoadMedication loadMedication;
 
 	public String getName() {
 		return name;
@@ -56,14 +55,6 @@ public class Medication {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public LoadMedication getLoadMedication() {
-		return loadMedication;
-	}
-
-	public void setLoadMedication(LoadMedication loadMedication) {
-		this.loadMedication = loadMedication;
 	}
 
 	@Override

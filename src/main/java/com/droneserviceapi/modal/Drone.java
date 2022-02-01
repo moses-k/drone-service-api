@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,8 +29,8 @@ public class Drone {
 																				// DELIVERED, RETURNING
 	private String state;
 
-	@OneToOne(mappedBy = "drone")
-	private LoadMedication loadMedication;
+	//@OneToOne(mappedBy = "drone")
+	//private LoadMedication loadMedication;
 
 	public String getSerialNumber() {
 		return serialNumber;
@@ -67,14 +66,6 @@ public class Drone {
 
 	public void setBattery(BigDecimal battery) {
 		this.battery = battery;
-	}
-
-	public LoadMedication getLoadMedication() {
-		return loadMedication;
-	}
-
-	public void setLoadMedication(LoadMedication loadMedication) {
-		this.loadMedication = loadMedication;
 	}
 
 	public void setState(String state) {

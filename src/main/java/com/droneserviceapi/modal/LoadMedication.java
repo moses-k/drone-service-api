@@ -1,5 +1,6 @@
 package com.droneserviceapi.modal;
 
+import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,17 +30,17 @@ public class LoadMedication {
 	private String destination;
 
 	@Column(name = "createdon", columnDefinition = "VARCHAR(30) NOT NULL")
-	private String createdon;
+	private LocalDateTime createdon;
 
-	@OneToOne(mappedBy = "loadMedication")
-	private MedicalDelivery medicalDelivery;
+	//@OneToOne(mappedBy = "loadMedication")
+	//private MedicalDelivery medicalDelivery;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_serial_no", referencedColumnName = "serial_no")
 	private Drone drone;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_code", referencedColumnName = "code")
+	@JoinColumn(name = "fk_code", referencedColumnName = "code", unique = true)
 	private Medication medication;
 
 	public Integer getTrackingId() {
@@ -66,20 +67,12 @@ public class LoadMedication {
 		this.destination = destination;
 	}
 
-	public String getCreatedon() {
+	public LocalDateTime getCreatedon() {
 		return createdon;
 	}
 
-	public void setCreatedon(String createdon) {
+	public void setCreatedon(LocalDateTime createdon) {
 		this.createdon = createdon;
-	}
-
-	public MedicalDelivery getMedicalDelivery() {
-		return medicalDelivery;
-	}
-
-	public void setMedicalDelivery(MedicalDelivery medicalDelivery) {
-		this.medicalDelivery = medicalDelivery;
 	}
 
 	public Drone getDrone() {
