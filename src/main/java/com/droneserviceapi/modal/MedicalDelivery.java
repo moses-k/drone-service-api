@@ -1,6 +1,8 @@
 package com.droneserviceapi.modal;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +23,7 @@ public class MedicalDelivery {
 	private Integer id;
 
 	@Column(name = "delivery_time", columnDefinition = "TIMESTAMP NOT NULL")
-	private Date deliveryTime;
+	private LocalDateTime deliveryTime;
 
 	@OneToOne(targetEntity = LoadMedication.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_trackingid", referencedColumnName = "trackingid")
@@ -35,11 +37,11 @@ public class MedicalDelivery {
 		this.id = id;
 	}
 
-	public Date getDeliveryTime() {
+	public LocalDateTime getDeliveryTime() {
 		return deliveryTime;
 	}
 
-	public void setDeliveryTime(Date deliveryTime) {
+	public void setDeliveryTime(LocalDateTime deliveryTime) {
 		this.deliveryTime = deliveryTime;
 	}
 

@@ -1,6 +1,7 @@
 package com.droneserviceapi.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.droneserviceapi.data.payload.request.LoadDroneRequest;
 import com.droneserviceapi.data.payload.response.MessageResponse;
 import com.droneserviceapi.modal.Drone;
 import com.droneserviceapi.modal.LoadMedication;
+import com.droneserviceapi.modal.MedicalDelivery;
 import com.droneserviceapi.modal.Medication;
 import com.droneserviceapi.repository.DroneRepository;
 import com.droneserviceapi.repository.MedicationRepository;
@@ -61,7 +63,6 @@ public class DroneSeriviceImpl implements DroneService {
 	public MessageResponse loadDrone(LoadDroneRequest loadRequest) {
 		try {
 			droneRepository.setUpdateState("LOADING", loadRequest.getSerialNumber());
-
 			Drone drone = droneRepository.findBySerialNumber(loadRequest.getSerialNumber());
 			Medication medication = medicationRepository.findByCode(loadRequest.getCode());
 
@@ -78,12 +79,10 @@ public class DroneSeriviceImpl implements DroneService {
 				return new MessageResponse("The Drone cannot load more than the weight limit");
 
 			}
-			
 			//check battery
 			
 			//load
 			LoadMedication  loadMedication = new LoadMedication();
-			loadMedication.setTrackingId(123456789);
 			loadMedication.setDrone(drone);
 			loadMedication.setMedication(medication);
 			loadMedication.setSource(loadRequest.getSource());
@@ -99,16 +98,18 @@ public class DroneSeriviceImpl implements DroneService {
 		}
 
 		return new MessageResponse("Drone Loaded successfully");
-
 	}
 
 	@Override
 	public MessageResponse deliverLoad(DroneDeliveryRequest loadRequest) {
+		droneRepository.setUpdateState("DELIVERING", loadRequest.getSerialNumber());
+		LoadMedication loadMedication =  loadDroneRepository.findByDrone(loadRequest.getSerialNumber());
+		MedicalDelivery newdelivery = new MedicalDelivery();
+		newdelivery.setLoadMedication(loadMedication);
+		newdelivery.setDeliveryTime(java.time.LocalDateTime.now());
+		droneRepository.setUpdateState("DELIVERED", loadRequest.getSerialNumber());
 
-
-		
-		
-		return null;
+		return new MessageResponse("Delivered Successfuly");
 	}
 
 }
