@@ -1,9 +1,10 @@
 package com.droneserviceapi.data.payload.request;
 
+import java.math.BigDecimal;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class DroneRequest {
+public class DroneRegisterRequest {
 	
 	@NotBlank
 	@NotNull
@@ -15,11 +16,11 @@ public class DroneRequest {
 	
 	@NotBlank
 	@NotNull
-	private String weightLimit;
+	private double weightLimit;
 
 	@NotBlank
 	@NotNull
-	private String battery;
+	private BigDecimal battery;
 	
 	@NotBlank
 	@NotNull
@@ -37,11 +38,11 @@ public class DroneRequest {
 		return model;
 	}
 
-	public String getWeightLimit() {
+	public double getWeightLimit() {
 		return weightLimit;
 	}
 
-	public void setWeightLimit(String weightLimit) {
+	public void setWeightLimit(double weightLimit) {
 		this.weightLimit = weightLimit;
 	}
 
@@ -49,11 +50,11 @@ public class DroneRequest {
 		this.model = model;
 	}
 
-	public String getBattery() {
+	public BigDecimal getBattery() {
 		return battery;
 	}
 
-	public void setBattery(String battery) {
+	public void setBattery(BigDecimal battery) {
 		this.battery = battery;
 	}
 

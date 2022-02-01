@@ -1,5 +1,7 @@
 package com.droneserviceapi.modal;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,11 +17,11 @@ public class Drone {
 	private String serialNumber;
 
 	@Column(name = "weight_limit", columnDefinition = "VARCHAR(10) NOT NULL")
-	private String weightLimit;
+	private double weightLimit;
 
-	@Column(name = "battery", columnDefinition = "VARCHAR(10) NOT NULL")
-	private String battery;
-
+	@Column(name = "battery",precision = 3, scale = 2)
+	private BigDecimal battery;
+	
 	@Column(name = "model", columnDefinition = "VARCHAR(50) NOT NULL") // Lightweight, Middleweight, Cruiserweight,
 																		// Heavyweight
 	private String model;
@@ -39,14 +41,6 @@ public class Drone {
 		this.serialNumber = serialNumber;
 	}
 
-	public String getBattery() {
-		return battery;
-	}
-
-	public void setBattery(String battery) {
-		this.battery = battery;
-	}
-
 	public String getModel() {
 		return model;
 	}
@@ -55,16 +49,32 @@ public class Drone {
 		this.model = model;
 	}
 
-	public String getWeightLimit() {
+	public double getWeightLimit() {
 		return weightLimit;
 	}
 
-	public void setWeightLimit(String weightLimit) {
+	public void setWeightLimit(double weightLimit) {
 		this.weightLimit = weightLimit;
 	}
 
 	public String getState() {
 		return state;
+	}
+
+	public BigDecimal getBattery() {
+		return battery;
+	}
+
+	public void setBattery(BigDecimal battery) {
+		this.battery = battery;
+	}
+
+	public LoadMedication getLoadMedication() {
+		return loadMedication;
+	}
+
+	public void setLoadMedication(LoadMedication loadMedication) {
+		this.loadMedication = loadMedication;
 	}
 
 	public void setState(String state) {

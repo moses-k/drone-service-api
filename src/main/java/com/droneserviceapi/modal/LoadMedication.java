@@ -19,8 +19,8 @@ public class LoadMedication {
 	@Column(name = "trackingid")
 	private Integer trackingId;
 
-	@Column(name = "medication_code", columnDefinition = "VARCHAR(16) NOT NULL")
-	private String medicatioCode;
+//	@Column(name = "medication_code", columnDefinition = "VARCHAR(16) NOT NULL")
+//	private String medicatioCode;
 
 	@Column(name = "source", columnDefinition = "VARCHAR(30) NOT NULL")
 	private String source;
@@ -48,14 +48,6 @@ public class LoadMedication {
 
 	public void setTrackingId(Integer trackingId) {
 		this.trackingId = trackingId;
-	}
-
-	public String getMedicatioCode() {
-		return medicatioCode;
-	}
-
-	public void setMedicatioCode(String medicatioCode) {
-		this.medicatioCode = medicatioCode;
 	}
 
 	public String getSource() {
@@ -106,11 +98,6 @@ public class LoadMedication {
 		this.medication = medication;
 	}
 
-	@Override
-	public String toString() {
-		return "LoadMedication [trackingId=" + trackingId + ", medicatioCode=" + medicatioCode + ", source=" + source
-				+ ", destination=" + destination + ", createdon=" + createdon + ", medicalDelivery=" + medicalDelivery
-				+ ", drone=" + drone + ", medication=" + medication + "]";
-	}
+	
 
 }

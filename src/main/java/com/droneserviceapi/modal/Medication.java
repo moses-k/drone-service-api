@@ -18,7 +18,7 @@ public class Medication {
 	private String name;
 
 	@Column(name = "weight", columnDefinition = "VARCHAR(10) NOT NULL")
-	private String weight;
+	private double weight;
 
 	@Column(name = "medication_image")
 	private String image;
@@ -34,14 +34,6 @@ public class Medication {
 		this.name = name;
 	}
 
-	public String getWeight() {
-		return weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
-	}
-
 	public String getCode() {
 		return code;
 	}
@@ -52,6 +44,14 @@ public class Medication {
 
 	public String getImage() {
 		return image;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
 
 	public void setImage(String image) {
