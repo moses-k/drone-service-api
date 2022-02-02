@@ -5,6 +5,19 @@ import javax.validation.constraints.NotNull;
 
 public class LoadDroneRequest {
 
+	public LoadDroneRequest() {
+		
+	}
+	
+	public LoadDroneRequest(@NotNull @NotBlank String serialNumber, @NotNull @NotBlank String source,
+			@NotNull @NotBlank String destination, @NotNull @NotBlank String code) {
+		super();
+		this.serialNumber = serialNumber;
+		this.source = source;
+		this.destination = destination;
+		this.code = code;
+	}
+
 	@NotNull
 	@NotBlank
 	private String serialNumber;
@@ -20,6 +33,8 @@ public class LoadDroneRequest {
 	@NotNull
 	@NotBlank
 	private String code;
+	
+	
 
 	public String getSerialNumber() {
 		return serialNumber;

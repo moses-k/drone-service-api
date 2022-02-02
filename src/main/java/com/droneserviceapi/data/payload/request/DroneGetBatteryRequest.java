@@ -5,9 +5,19 @@ import javax.validation.constraints.NotNull;
 
 public class DroneGetBatteryRequest {
 
+	public DroneGetBatteryRequest() {
+		
+	}
+	
+	public DroneGetBatteryRequest(@NotBlank @NotNull String serialNumber) {
+		super();
+		this.serialNumber = serialNumber;
+	}
+
 	@NotBlank
 	@NotNull
 	private String serialNumber;
+	
 
 	
 	public String getSerialNumber() {

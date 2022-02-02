@@ -15,6 +15,20 @@ import javax.persistence.Table;
 @Table(name = "drone_load")
 public class LoadMedication {
 
+	public LoadMedication() {
+		
+	}
+	public LoadMedication(Integer trackingId, String source, String destination, LocalDateTime createdon, Drone drone,
+			Medication medication) {
+		super();
+		this.trackingId = trackingId;
+		this.source = source;
+		this.destination = destination;
+		this.createdon = createdon;
+		this.drone = drone;
+		this.medication = medication;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "trackingid")
@@ -42,6 +56,9 @@ public class LoadMedication {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_code", referencedColumnName = "code", unique = true)
 	private Medication medication;
+	
+	
+	
 
 	public Integer getTrackingId() {
 		return trackingId;

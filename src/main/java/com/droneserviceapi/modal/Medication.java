@@ -9,6 +9,18 @@ import javax.persistence.Table;
 @Table(name = "medication")
 public class Medication {
 
+	public Medication() {
+		
+	}
+	
+	public Medication(String code, String name, double weight, String image) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.weight = weight;
+		this.image = image;
+	}
+
 	@Id
 	@Column(name = "code", columnDefinition = "VARCHAR(16) NOT NULL")
 	private String code;
@@ -21,6 +33,8 @@ public class Medication {
 
 	@Column(name = "medication_image")
 	private String image;
+	
+	
 
 	//@OneToOne(mappedBy = "medication")
 	//private LoadMedication loadMedication;

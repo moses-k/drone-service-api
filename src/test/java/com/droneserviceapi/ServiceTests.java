@@ -42,12 +42,13 @@ class ServiceTests {
 		list.add(drone2);
 		list.add(drone3);
 		list.add(drone4);
+		
 		String state = "IDLE";
 		when(droneRepository.findAllByState(state)).thenReturn(list);
 
 		// test
-		List<Drone> empList = droneRepository.findAllByState(state);
-		assertEquals(4, empList.size());
+		List<Drone> availableDrones = droneServiceImpl.getAvailabeDrones();
+		assertEquals(4, availableDrones.size()); //assertThat(availableDrones.size()).isEqualTo(4);
 		verify(droneRepository, times(1)).findAllByState(state);
 	}
 

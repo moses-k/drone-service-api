@@ -37,13 +37,13 @@ public class DroneMainController {
 	}
 
 	@GetMapping("/available")
-	public ResponseEntity<List<Drone>> getAvailableDrones() {
+	public ResponseEntity<List<Drone>> getAvailableDroneForLoading() {
 		List<Drone> drones = droneService.getAvailabeDrones();
 		return new ResponseEntity<List<Drone>>(drones, HttpStatus.CREATED);
 	}
 
 	@PostMapping("/battery")
-	public ResponseEntity<Drone> getDroneBateryLevel(
+	public ResponseEntity<Drone> checkDroneBattery(
 			@NotNull @RequestBody(required = true) DroneGetBatteryRequest drequest) {
 		if (drequest.getSerialNumber() == null || drequest.getSerialNumber().isEmpty()) {
 			throw new RuntimeException("SerialNumber is Required");
@@ -53,19 +53,19 @@ public class DroneMainController {
 	}
 
 	@PostMapping("/load")
-	public ResponseEntity<MessageResponse> registerDrone(@NotNull @RequestBody LoadDroneRequest loadrequest) {
+	public ResponseEntity<MessageResponse> loadDroneWithMedication(@NotNull @RequestBody LoadDroneRequest loadrequest) {
 		MessageResponse newDrone = droneService.loadDrone(loadrequest);
 		return new ResponseEntity<MessageResponse>(newDrone, HttpStatus.CREATED);
 	}
 
 	@GetMapping(path = "details/{serialNumber}")
-	public ResponseEntity<LoadMedication> getDronesLoads(@PathVariable("serialNumber") String serialNumber) {
+	public ResponseEntity<LoadMedication> checkLoadedMedicationItem(@PathVariable("serialNumber") String serialNumber) {
 		LoadMedication load = droneService.getLoadedMedicationForADrone(serialNumber);
 		return new ResponseEntity<LoadMedication>(load, HttpStatus.CREATED);
 	}
 
 	@PostMapping("/deliver")
-	public ResponseEntity<MessageResponse> registerDrone(@NotNull @RequestBody DroneDeliveryRequest deliverRequest) {
+	public ResponseEntity<MessageResponse> droneMedicalLoadDelivery(@NotNull @RequestBody DroneDeliveryRequest deliverRequest) {
 		MessageResponse delivery = droneService.deliverLoad(deliverRequest);
 		return new ResponseEntity<MessageResponse>(delivery, HttpStatus.CREATED);
 	}

@@ -38,8 +38,6 @@ public class DroneSeriviceImpl implements DroneService {
 		newdrone.setBattery(droneRequest.getBattery());
 		newdrone.setState(droneRequest.getState());
 		droneRepository.save(newdrone);
-		System.out.println("=======actual  body is "+ new MessageResponse("New Drone created successfull"));
-
 		return new MessageResponse("New Drone created successfully");
 	}
 
@@ -60,7 +58,6 @@ public class DroneSeriviceImpl implements DroneService {
 	@Override
 	public List<Drone> getAvailabeDrones() {
 		String state = "IDLE";
-		System.out.println("idle drones are "+droneRepository.findAllByState(state).size());
 		return droneRepository.findAllByState(state);
 	}
 	@Override
