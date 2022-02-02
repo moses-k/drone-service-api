@@ -5,8 +5,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class DroneRegisterRequest {
-	private static final long serialVersionUID = 1L;
-
 	public DroneRegisterRequest() {
 
 	}

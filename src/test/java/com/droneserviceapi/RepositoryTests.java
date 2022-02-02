@@ -25,7 +25,7 @@ class RepositoryTests {
 		droneRepository.save(drone);
 		
 		Iterable<Drone> drones = droneRepository.findAll();
-	    Assertions.assertThat(drones).extracting(Drone::getSerialNumber).containsOnly("Q23RT5676697");
+	    Assertions.assertThat(drones).extracting(Drone::getSerialNumber).contains(drone.getSerialNumber());
 	    droneRepository.deleteAll();
 	    Assertions.assertThat(droneRepository.findAll()).isEmpty();
 

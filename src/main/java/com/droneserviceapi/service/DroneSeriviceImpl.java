@@ -52,7 +52,6 @@ public class DroneSeriviceImpl implements DroneService {
 	public LoadMedication getLoadedMedicationForADrone(String serialno) {
 
 		return loadDroneRepository.findByDrone(serialno);
-		
 	}
 
 	@Override
@@ -81,6 +80,9 @@ public class DroneSeriviceImpl implements DroneService {
 
 			}
 			//check battery
+//			if(Integer.valueOf(drone.getBattery().toString()) <0.25){
+//				return new MessageResponse("The Drone cannot loaded, battery below 25%");
+//			}
 			
 			//load
 			LoadMedication  loadMedication = new LoadMedication();
