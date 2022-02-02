@@ -1,8 +1,6 @@
 package com.droneserviceapi.service;
 
 import java.util.List;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.droneserviceapi.data.payload.request.DroneDeliveryRequest;
@@ -14,6 +12,7 @@ import com.droneserviceapi.modal.Drone;
 import com.droneserviceapi.modal.LoadMedication;
 import com.droneserviceapi.modal.MedicalDelivery;
 import com.droneserviceapi.modal.Medication;
+import com.droneserviceapi.repository.DroneDeliveryRepository;
 import com.droneserviceapi.repository.DroneRepository;
 import com.droneserviceapi.repository.MedicationRepository;
 import com.droneserviceapi.repository.loadDroneRepository;
@@ -27,9 +26,12 @@ public class DroneSeriviceImpl implements DroneService {
 	private MedicationRepository medicationRepository;
 	@Autowired
 	private loadDroneRepository loadDroneRepository;
+	@Autowired
+	private DroneDeliveryRepository droneDeliveryRepository;
 
 	@Override
 	public MessageResponse register(DroneRegisterRequest droneRequest) {
+		System.out.println("========================in register");
 		Drone newdrone = new Drone();
 		newdrone.setSerialNumber(droneRequest.getSerialNumber());
 		newdrone.setModel(droneRequest.getModel());
@@ -107,9 +109,10 @@ public class DroneSeriviceImpl implements DroneService {
 		MedicalDelivery newdelivery = new MedicalDelivery();
 		newdelivery.setLoadMedication(loadMedication);
 		newdelivery.setDeliveryTime(java.time.LocalDateTime.now());
+		droneDeliveryRepository.save(newdelivery);
 		droneRepository.setUpdateState("DELIVERED", loadRequest.getSerialNumber());
 
-		return new MessageResponse("Delivered Successfuly");
+		return new MessageResponse("Delivered successfully");
 	}
 
 }

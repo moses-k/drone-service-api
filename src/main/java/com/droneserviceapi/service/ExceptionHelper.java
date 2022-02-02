@@ -18,6 +18,8 @@ public class ExceptionHelper {
 	public ResponseEntity<MessageResponse> handleInvalidInputException(RuntimeException ex) {
 
 		logger.error("Invalid Input Exception: ", ex.getMessage());
+		
+		System.out.println("exception is "+ ex.getMessage());
 
 		return new ResponseEntity<MessageResponse>(new MessageResponse("Invalid Input"),
 				HttpStatus.BAD_REQUEST);

@@ -14,14 +14,23 @@ public class DroneRegisterRequest {
 	@NotNull
 	private String model;
 	
-	@NotBlank
 	@NotNull
 	private double weightLimit;
 
-	@NotBlank
 	@NotNull
 	private BigDecimal battery;
 	
+//	public DroneRegisterRequest(@NotBlank @NotNull String serialNumber, @NotBlank @NotNull String model,
+//			@NotBlank @NotNull double weightLimit, @NotBlank @NotNull BigDecimal battery,
+//			@NotBlank @NotNull String state) {
+//		super();
+//		this.serialNumber = serialNumber;
+//		this.model = model;
+//		this.weightLimit = weightLimit;
+//		this.battery = battery;
+//		this.state = state;
+//	}
+
 	@NotBlank
 	@NotNull
 	private String state;

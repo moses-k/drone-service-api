@@ -1,7 +1,9 @@
 package com.droneserviceapi.controller;
 
+import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.droneserviceapi.data.payload.request.DroneDeliveryRequest;
 import com.droneserviceapi.data.payload.request.DroneGetBatteryRequest;
 import com.droneserviceapi.data.payload.request.DroneRegisterRequest;
@@ -30,9 +34,15 @@ public class DroneMainController {
 	@Autowired
 	private DroneSeriviceImpl droneService;
 
-	@PostMapping("/register")
-	public ResponseEntity<MessageResponse> registerDrone(@NotNull @RequestBody DroneRegisterRequest dronerequest) {
+	@PostMapping(path = "/register", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<MessageResponse> registerDrone(@ Valid @NotNull @RequestBody DroneRegisterRequest dronerequest) {
 		MessageResponse newDrone = droneService.register(dronerequest);
+		
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
+				"/{id}").buildAndExpand(dronerequest.getSerialNumber()).toUri();
+
+		//return ResponseEntity.created(location).build();
+		
 		return new ResponseEntity<MessageResponse>(newDrone, HttpStatus.CREATED);
 	}
 
