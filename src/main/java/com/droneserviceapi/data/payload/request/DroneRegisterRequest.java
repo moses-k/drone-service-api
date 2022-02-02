@@ -5,31 +5,35 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class DroneRegisterRequest {
-	
+	private static final long serialVersionUID = 1L;
+
+	public DroneRegisterRequest() {
+
+	}
+
+	public DroneRegisterRequest(String serialNumber, String model, double weightLimit, BigDecimal battery,
+			String state) {
+		super();
+		this.serialNumber = serialNumber;
+		this.model = model;
+		this.weightLimit = weightLimit;
+		this.battery = battery;
+		this.state = state;
+	}
+
 	@NotBlank
 	@NotNull
 	private String serialNumber;
-	
+
 	@NotBlank
 	@NotNull
 	private String model;
-	
+
 	@NotNull
 	private double weightLimit;
 
 	@NotNull
 	private BigDecimal battery;
-	
-//	public DroneRegisterRequest(@NotBlank @NotNull String serialNumber, @NotBlank @NotNull String model,
-//			@NotBlank @NotNull double weightLimit, @NotBlank @NotNull BigDecimal battery,
-//			@NotBlank @NotNull String state) {
-//		super();
-//		this.serialNumber = serialNumber;
-//		this.model = model;
-//		this.weightLimit = weightLimit;
-//		this.battery = battery;
-//		this.state = state;
-//	}
 
 	@NotBlank
 	@NotNull
@@ -47,16 +51,16 @@ public class DroneRegisterRequest {
 		return model;
 	}
 
+	public void setModel(String model) {
+		this.model = model;
+	}
+
 	public double getWeightLimit() {
 		return weightLimit;
 	}
 
 	public void setWeightLimit(double weightLimit) {
 		this.weightLimit = weightLimit;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
 	}
 
 	public BigDecimal getBattery() {

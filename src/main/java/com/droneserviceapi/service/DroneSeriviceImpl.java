@@ -31,7 +31,6 @@ public class DroneSeriviceImpl implements DroneService {
 
 	@Override
 	public MessageResponse register(DroneRegisterRequest droneRequest) {
-		System.out.println("========================in register");
 		Drone newdrone = new Drone();
 		newdrone.setSerialNumber(droneRequest.getSerialNumber());
 		newdrone.setModel(droneRequest.getModel());
