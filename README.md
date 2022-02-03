@@ -113,13 +113,18 @@ The response should be
 [![reg-drone-response.png](https://i.postimg.cc/G20fRxKF/reg-drone-response.png)](https://postimg.cc/bGTgHbKr)
 
 ---
-- **loading a drone with medication items;** 
+- **checking available drones for loading;**
+
 
 Before loading a drone with Medication you can first check the available drones to confirm that the drone is not in use
+
 **localhost:8082/api/drone/available**
 
 [![available.png](https://i.postimg.cc/m22BKTtb/available.png)](https://postimg.cc/DmD9XkrD)
 
+---
+- **loading a drone with medication items;** 
+ 
 **localhost:8082/api/drone/load**
 
 - serialNumber is the unique serial for the drone being loaded
@@ -129,7 +134,11 @@ Before loading a drone with Medication you can first check the available drones 
 
 [![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
 
-----
+---
+
+
+
+---
 
 :scroll: **END** 
 
