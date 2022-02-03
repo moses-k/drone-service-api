@@ -74,12 +74,12 @@ While implementing your solution **please take care of the following requirement
 
 - Java 8
 - Java IDE (Eclipse)
-- MYSQL databse (Locally Installed)
+- MYSQL databse (Optional you can use in-memory databse)
 - Postman(For testing ) 
 
 ### Steps by step for building and runing the project locally
 
-- Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
+- Clone the from the link git clone https://oauth:glpat-KxCBHW2ez2iw-xhJ3D2K@gitlab.com/musala-coding-tasks-solutions/moses-kipyegon.git
 
 [![clone.png](https://i.postimg.cc/WbVX1KTf/clone.png)](https://postimg.cc/G9MkMXBk)
 
@@ -89,7 +89,7 @@ While implementing your solution **please take care of the following requirement
 
 - Maven Build the project and run
 
-
+- Before running you can run the JUnit test cases to assert that everything is working correctly(I have included some of the JUnit tests)
 
 
 ---
@@ -99,9 +99,7 @@ While implementing your solution **please take care of the following requirement
 
 - Once the Medication is loaded to a specific drone it cannot be loaded to another drone at the same time.
 
-
-
-- Open Postman
+Open Postman
 For testing purpose the API is secured and you will have to specify the Authorization in the headers as Basic Auth
 
 Username **admin**
