@@ -154,9 +154,12 @@ Before loading a drone with Medication you can first check the available drones 
 [![battery.png](https://i.postimg.cc/25v13CQs/battery.png)](https://postimg.cc/DWvvMkY6)
 
 ---
-- ****
+- **delivery of medication item**
+**localhost:8082/api/drone/deliver**
 
+When the drone delivers the item it call this end-point and its status is change drop loaded to delivering then delivered
 
+[![deliver.png](https://i.postimg.cc/9FRCcJtS/deliver.png)](https://postimg.cc/KR2dN7Wr)
 
 
 
