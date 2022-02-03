@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ## Drones
 
 [[_TOC_]]
@@ -71,7 +71,5 @@ While implementing your solution **please take care of the following requirement
 ---
 
 :scroll: **END** 
-=======
-# drone-service-api
-Drone Service REST API in Spring boot
->>>>>>> 7079b5387c7ae140d9f408d8c26a6d4da1952bbb
+
+
