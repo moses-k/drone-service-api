@@ -87,7 +87,7 @@ While implementing your solution **please take care of the following requirement
 
 - Go to maven the update Project to update all the maven dependencies
 
-- 
+- Maven Build the project and run
 
 
 
@@ -95,6 +95,12 @@ While implementing your solution **please take care of the following requirement
 ---
 
 ### Testing the API
+- Some of the assumption made for the purpose of this API design are:-
+
+- Once the Medication is loaded to a specific drone it cannot be loaded to another drone at the same time.
+
+
+
 - Open Postman
 For testing purpose the API is secured and you will have to specify the Authorization in the headers as Basic Auth
 
@@ -134,7 +140,7 @@ The payload will have the following fields
 - source is the loading point
 - destination is where the load is being taken
 
-the Medication items for testing are code : WE232344, WE232345, WE232346, WE232347, WE232348, WE232349, WE2323510, WE2323511, WE2323512, WE2323513
+the Medication items to be loaded for testing are code : **WE232344, WE232345, WE232346, WE232347, WE232348, WE232349, WE2323510, WE2323511, WE2323512, WE2323513**
 
 the destination and the source are any places
 
