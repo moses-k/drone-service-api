@@ -135,6 +135,28 @@ Before loading a drone with Medication you can first check the available drones 
 [![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
 
 ---
+- **checking loaded medication items for a given drone;**
+
+**checking loaded medication items for a given drone;**
+
+**localhost:8082/api/drone/details/Q23RT5676695**
+
+- Check which medication item is loaded to a specific drone.
+
+[![details.png](https://i.postimg.cc/T1xgTpBN/details.png)](https://postimg.cc/9RxrpFmy)
+
+---
+
+- **check drone battery level for a given drone;**
+
+**localhost:8082/api/drone/battery**
+
+[![battery.png](https://i.postimg.cc/25v13CQs/battery.png)](https://postimg.cc/DWvvMkY6)
+
+---
+- ****
+
+
 
 
 
