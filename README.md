@@ -79,7 +79,7 @@ While implementing your solution **please take care of the following requirement
 
 ### Steps by step for building and runing the project locally
 
-- Clone the from the link git clone https://oauth:glpat-KxCBHW2ez2iw-xhJ3D2K@gitlab.com/musala-coding-tasks-solutions/moses-kipyegon.git
+- Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
 
 [![clone.png](https://i.postimg.cc/WbVX1KTf/clone.png)](https://postimg.cc/G9MkMXBk)
 
@@ -106,7 +106,7 @@ Username **admin**
 
 Password **admin**
 
-Note: the ContentType application/json
+Note: the ContentType is application/json
 
 [![basic-auth.png](https://i.postimg.cc/XYd73QcL/basic-auth.png)](https://postimg.cc/RWCzL1YJ)
 
