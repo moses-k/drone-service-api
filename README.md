@@ -122,6 +122,11 @@ Before loading a drone with Medication you can first check the available drones 
 
 **localhost:8082/api/drone/load**
 
+- serialNumber is the unique serial for the drone being loaded
+- code id the unique code for the medication load being loaded to the drone
+- source is the loading point
+- destination is where the load is being taken
+
 [![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
 
 ----
