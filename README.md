@@ -103,7 +103,7 @@ Password **admin**
 [![basic-auth.png](https://i.postimg.cc/XYd73QcL/basic-auth.png)](https://postimg.cc/RWCzL1YJ)
 
 ----
-- ** registering a drone ** localhost:8082/api/drone/register
+- **registering a drone** localhost:8082/api/drone/register
 The payload should be in json format like this
 
 [![reg-drone-payload.png](https://i.postimg.cc/SNVH98Q4/reg-drone-payload.png)](https://postimg.cc/RN6P5Wnp)
@@ -113,7 +113,7 @@ The response should be
 [![reg-drone-response.png](https://i.postimg.cc/G20fRxKF/reg-drone-response.png)](https://postimg.cc/bGTgHbKr)
 
 ---
-- ** loading a drone with medication items; ** 
+- **loading a drone with medication items;** 
 
 Before loading a drone with Medication you can first check the available drones to confirm that the drone is not in use
 
