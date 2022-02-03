@@ -79,6 +79,9 @@ While implementing your solution **please take care of the following requirement
 ### Steps of building the project locally
 
 - Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
+
+[![clone.png](https://i.postimg.cc/WbVX1KTf/clone.png)](https://postimg.cc/G9MkMXBk)
+
 - Open the cloned project in eclipse
 
 - [![what-companied-thinks.png](https://i.postimg.cc/DzRSy9kW/what-companied-thinks.png)](https://postimg.cc/8FBpZnCD)
