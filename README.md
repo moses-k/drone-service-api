@@ -134,6 +134,11 @@ The payload will have the following fields
 - source is the loading point
 - destination is where the load is being taken
 
+the Medication items for testing are code : WE232344, WE232345, WE232346, WE232347, WE232348, WE232349, WE2323510, WE2323511, WE2323512, WE2323513
+
+the destination and the source are any places
+ - 
+
 [![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
 
 ---
