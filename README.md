@@ -137,9 +137,7 @@ The payload will have the following fields
 [![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
 
 ---
-- **checking loaded medication items for a given drone;**
-
-**Checking loaded medication items for a given drone;**
+- **Checking loaded medication items for a given drone;**
 
 **localhost:8082/api/drone/details/Q23RT5676695**
 
@@ -157,6 +155,7 @@ The payload will have the following fields
 
 ---
 - **Delivery of medication item**
+
 **localhost:8082/api/drone/deliver**
 
 When the drone delivers the item it call this end-point and its status is change drop loaded to delivering then delivered
