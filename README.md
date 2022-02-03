@@ -81,8 +81,7 @@ While implementing your solution **please take care of the following requirement
 - Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
 - Open the cloned project in eclipse
 
-![Alt text](https://i.postimg.cc/DzRSy9kW/what-companied-thinks.png"Optional Title")
-- 
+- https://i.postimg.cc/DzRSy9kW/what-companied-thinks.png
 
 
 
