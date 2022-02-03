@@ -85,8 +85,9 @@ While implementing your solution **please take care of the following requirement
 
 - Open the cloned project in eclipse
 
-- [![what-companied-thinks.png](https://i.postimg.cc/DzRSy9kW/what-companied-thinks.png)](https://postimg.cc/8FBpZnCD)
+- Go to maven the update Project to update all the maven dependencies
 
+- 
 
 
 
