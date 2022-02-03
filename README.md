@@ -89,7 +89,7 @@ While implementing your solution **please take care of the following requirement
 
 - Maven Build the project and run
 
-- Before running you can run the JUnit test cases to assert that everything is working correctly(I have included some of the JUnit tests)
+- Before running you can run the JUnit test cases to assert that everything is working correctly (I have included some of the JUnit tests)
 
 
 ---
@@ -103,7 +103,11 @@ Open Postman
 For testing purpose the API is secured and you will have to specify the Authorization in the headers as Basic Auth
 
 Username **admin**
+
 Password **admin**
+
+Note: the ContentType application/json
+
 [![basic-auth.png](https://i.postimg.cc/XYd73QcL/basic-auth.png)](https://postimg.cc/RWCzL1YJ)
 
 ----
