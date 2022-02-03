@@ -137,7 +137,8 @@ The payload will have the following fields
 the Medication items for testing are code : WE232344, WE232345, WE232346, WE232347, WE232348, WE232349, WE2323510, WE2323511, WE2323512, WE2323513
 
 the destination and the source are any places
- - 
+
+ - The serialNumber is the unique serialNumber a drone that you register
 
 [![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
 
