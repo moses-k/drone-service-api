@@ -94,6 +94,18 @@ While implementing your solution **please take care of the following requirement
 
 ---
 
+### Testing the API
+- Open Postman
+For testing purpose the API is secured and you will have to specify the Authorization in the headers as Basic Auth.
+Username **admin**
+Password **admin**
+[![basic-auth.png](https://i.postimg.cc/XYd73QcL/basic-auth.png)](https://postimg.cc/RWCzL1YJ)
+
+
+- **localhost:8082/api/drone/register**
+
+---
+
 :scroll: **END** 
 
 
