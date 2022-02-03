@@ -116,7 +116,13 @@ The response should be
 - **loading a drone with medication items;** 
 
 Before loading a drone with Medication you can first check the available drones to confirm that the drone is not in use
+**localhost:8082/api/drone/available**
 
+[![available.png](https://i.postimg.cc/m22BKTtb/available.png)](https://postimg.cc/DmD9XkrD)
+
+**localhost:8082/api/drone/load**
+
+[![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
 
 ----
 
