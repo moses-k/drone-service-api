@@ -96,13 +96,21 @@ While implementing your solution **please take care of the following requirement
 
 ### Testing the API
 - Open Postman
-For testing purpose the API is secured and you will have to specify the Authorization in the headers as Basic Auth.
+For testing purpose the API is secured and you will have to specify the Authorization in the headers as Basic Auth
+
 Username **admin**
 Password **admin**
 [![basic-auth.png](https://i.postimg.cc/XYd73QcL/basic-auth.png)](https://postimg.cc/RWCzL1YJ)
 
 
-- **localhost:8082/api/drone/register**
+- **registering a drone ** localhost:8082/api/drone/register
+The payload should be in json format like this
+
+[![reg-drone-payload.png](https://i.postimg.cc/SNVH98Q4/reg-drone-payload.png)](https://postimg.cc/RN6P5Wnp)
+
+The response should be 
+
+[![reg-drone-response.png](https://i.postimg.cc/G20fRxKF/reg-drone-response.png)](https://postimg.cc/bGTgHbKr)
 
 ---
 
