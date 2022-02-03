@@ -72,13 +72,17 @@ While implementing your solution **please take care of the following requirement
 
 #### Requirements
 
--Java 8
+- Java 8
 - Java IDE (Eclipse)
 -
 
-###Steps of building the project locally
+### Steps of building the project locally
 
 - Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
+- Open the cloned project in eclipse
+
+![Alt text](https://i.postimg.cc/DzRSy9kW/what-companied-thinks.png"Optional Title")
+- 
 
 
 
