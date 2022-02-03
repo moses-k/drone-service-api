@@ -1,6 +1,7 @@
 package com.droneserviceapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
@@ -20,9 +21,12 @@ import com.droneserviceapi.controller.DroneMainController;
 import com.droneserviceapi.data.payload.request.DroneGetBatteryRequest;
 import com.droneserviceapi.data.payload.request.DroneRegisterRequest;
 import com.droneserviceapi.data.payload.request.LoadDroneRequest;
-import com.droneserviceapi.data.payload.response.MessageResponse;
+import com.droneserviceapi.data.payload.response.AvailableDroneResponse;
+import com.droneserviceapi.data.payload.response.DroneBatteryDetailsResponse;
+import com.droneserviceapi.data.payload.response.DroneMedicationLoadRsponse;
+import com.droneserviceapi.data.payload.response.LoadDroneResponse;
+import com.droneserviceapi.data.payload.response.RegisterDroneResponse;
 import com.droneserviceapi.modal.Drone;
-import com.droneserviceapi.modal.LoadMedication;
 import com.droneserviceapi.modal.Medication;
 import com.droneserviceapi.service.DroneSeriviceImpl;
 
@@ -39,15 +43,20 @@ class TestDroneMainController {
 	public void testRegisterDrone() {
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+		RegisterDroneResponse registerDroneResponse = new RegisterDroneResponse();
+		registerDroneResponse.setMessage("success");
+		registerDroneResponse.setSerialNumber("Q23RT5676697");
+		registerDroneResponse.setMessage("New Drone created successfully");
+		registerDroneResponse.setTimestamp(java.time.LocalDateTime.now());
 
-		when(droneService.register(any(DroneRegisterRequest.class)))
-				.thenReturn(new MessageResponse("New Drone created successfully"));
+		when(droneService.register(any(DroneRegisterRequest.class))).thenReturn(registerDroneResponse);
 
 		DroneRegisterRequest drone = new DroneRegisterRequest("Q23RT5676697", "Sonny", 1200.0, new BigDecimal(0.95),
 				"DELIVERED");
-		ResponseEntity<MessageResponse> responseEntity = droneMainController.registerDrone(drone);
+		ResponseEntity<RegisterDroneResponse> responseEntity = droneMainController.registerDrone(drone);
 		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-		assertThat(responseEntity.getBody().getMessage()).isEqualTo("New Drone created successfully");
+		assertThat(responseEntity.getBody()).isEqualTo(registerDroneResponse);
+		//assertEquals(registerDroneResponse, responseEntity);
 
 	}
 
@@ -64,11 +73,16 @@ class TestDroneMainController {
 		list.add(drone1);
 		list.add(drone2);
 		list.add(drone3);
-		when(droneService.getAvailabeDrones()).thenReturn(list);
 
-		ResponseEntity<List<Drone>> responseEntity = droneMainController.getAvailableDroneForLoading();
-		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201); // Created
-		assertThat(responseEntity.getBody().size()).isEqualTo(3);
+		AvailableDroneResponse availableDrone = new AvailableDroneResponse("success", java.time.LocalDateTime.now(),
+				list);
+
+		when(droneService.getAvailabeDrones()).thenReturn(availableDrone);
+
+		ResponseEntity<AvailableDroneResponse> responseEntity = droneMainController.getAvailableDroneForLoading();
+		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200); // Created
+		assertThat(responseEntity.getBody().getStatus()).isEqualTo("success");
+		assertThat(responseEntity.getBody().getDrones().size()).isEqualTo(3);
 
 	}
 
@@ -77,10 +91,11 @@ class TestDroneMainController {
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-		Drone droneBattery = new Drone("Q23RT5676697", "Sonny", 1200.0, new BigDecimal(0.95), "IDLE");
+		DroneBatteryDetailsResponse droneBattery = new DroneBatteryDetailsResponse("success", "Q23RT5676697", "98%",
+				java.time.LocalDateTime.now());
 		when(droneService.getBateryLevel(any(DroneGetBatteryRequest.class))).thenReturn(droneBattery);
 
-		ResponseEntity<Drone> responseEntity = droneMainController
+		ResponseEntity<DroneBatteryDetailsResponse> responseEntity = droneMainController
 				.checkDroneBattery(new DroneGetBatteryRequest("Q23RT5676697"));
 		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
 		assertThat(responseEntity.getBody()).isEqualTo(droneBattery);
@@ -92,35 +107,41 @@ class TestDroneMainController {
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-		when(droneService.loadDrone(any(LoadDroneRequest.class)))
-				.thenReturn(new MessageResponse("Drone Loaded successfully"));
+		LoadDroneResponse droneResponse = new LoadDroneResponse();
+		droneResponse.setResult("sucess");
+		droneResponse.setSerialNumber("Q23RT5676697");
+		droneResponse.setMessage("Drone Loaded successfully");
+		droneResponse.setTimestamp(java.time.LocalDateTime.now());
+
+		when(droneService.loadDrone(any(LoadDroneRequest.class))).thenReturn(droneResponse);
 
 		LoadDroneRequest loadRequest = new LoadDroneRequest("Q23RT5676697", "Nairobi", "Mumbai", "POQ1223465G");
-		ResponseEntity<MessageResponse> responseEntity = droneMainController.loadDroneWithMedication(loadRequest);
+		ResponseEntity<LoadDroneResponse> responseEntity = droneMainController.loadDroneWithMedication(loadRequest);
 		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-		assertThat(responseEntity.getBody().getMessage()).isEqualTo("Drone Loaded successfully");
+		assertThat(responseEntity.getBody()).isEqualTo(droneResponse);
 
 	}
-	
+
 	@Test
 	public void testCheckLoadedMedicationItem() {
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
-		Drone drone = new Drone("Q23RT5676697", "Sonny", 1200.0, new BigDecimal(0.95), "IDLE");
-		Medication medication  = new Medication("YT5432RT","Panadol",400,"t345tghhyt");
-		LoadMedication  loadMedication = new LoadMedication(1,"Nairobi","Mumbai",java.time.LocalDateTime.now() ,drone, medication);
-		
-		String serialNumber ="Q23RT5676697";
-		when(droneService.getLoadedMedicationForADrone(serialNumber)).thenReturn(loadMedication);
+		Medication medication = new Medication("YT5432RT", "Panadol", 400, "t345tghhyt");
+		DroneMedicationLoadRsponse droneMedicationLoadRsponse = new DroneMedicationLoadRsponse();
+		droneMedicationLoadRsponse.setResult("success");
+		droneMedicationLoadRsponse.setSerialNumber("Q23RT5676697");
+		droneMedicationLoadRsponse.setTimestamp(java.time.LocalDateTime.now());
+		droneMedicationLoadRsponse.setMedication(medication);
 
-		ResponseEntity<LoadMedication> responseEntity = droneMainController
+		String serialNumber = "Q23RT5676697";
+		when(droneService.getLoadedMedicationForADrone(serialNumber)).thenReturn(droneMedicationLoadRsponse);
+
+		ResponseEntity<DroneMedicationLoadRsponse> responseEntity = droneMainController
 				.checkLoadedMedicationItem(serialNumber);
-		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
-		assertThat(responseEntity.getBody()).isEqualTo(loadMedication);
+		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
+		assertThat(responseEntity.getBody()).isEqualTo(droneMedicationLoadRsponse);
 
 	}
-	
-	
 
 }

@@ -1,31 +1,31 @@
 package com.droneserviceapi.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
-
 import com.droneserviceapi.data.payload.request.DroneDeliveryRequest;
 import com.droneserviceapi.data.payload.request.DroneGetBatteryRequest;
 import com.droneserviceapi.data.payload.request.DroneRegisterRequest;
 import com.droneserviceapi.data.payload.request.LoadDroneRequest;
-import com.droneserviceapi.data.payload.response.MessageResponse;
-import com.droneserviceapi.modal.Drone;
-import com.droneserviceapi.modal.LoadMedication;
+import com.droneserviceapi.data.payload.response.AvailableDroneResponse;
+import com.droneserviceapi.data.payload.response.DeliverDroneResponse;
+import com.droneserviceapi.data.payload.response.DroneBatteryDetailsResponse;
+import com.droneserviceapi.data.payload.response.DroneMedicationLoadRsponse;
+import com.droneserviceapi.data.payload.response.LoadDroneResponse;
+import com.droneserviceapi.data.payload.response.RegisterDroneResponse;
 
 @Component
 public interface DroneService {
 	
-	MessageResponse register(DroneRegisterRequest drone);
+	RegisterDroneResponse register(DroneRegisterRequest drone);
 
-	Drone getBateryLevel(DroneGetBatteryRequest drequest) throws Exception;
+	DroneBatteryDetailsResponse getBateryLevel(DroneGetBatteryRequest drequest) throws Exception;
 	
-	LoadMedication getLoadedMedicationForADrone(String serialno);
+	DroneMedicationLoadRsponse getLoadedMedicationForADrone(String serialno);
 	
-	List<Drone> getAvailabeDrones();
+	AvailableDroneResponse getAvailabeDrones();
 	
-	MessageResponse loadDrone(LoadDroneRequest loadRequest);
+	LoadDroneResponse loadDrone(LoadDroneRequest loadRequest);
 	
-	MessageResponse deliverLoad(DroneDeliveryRequest loadRequest);
+	DeliverDroneResponse deliverLoad(DroneDeliveryRequest loadRequest);
 
 	
 }

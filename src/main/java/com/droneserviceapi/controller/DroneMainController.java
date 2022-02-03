@@ -1,6 +1,5 @@
 package com.droneserviceapi.controller;
 
-import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,57 +16,60 @@ import com.droneserviceapi.data.payload.request.DroneDeliveryRequest;
 import com.droneserviceapi.data.payload.request.DroneGetBatteryRequest;
 import com.droneserviceapi.data.payload.request.DroneRegisterRequest;
 import com.droneserviceapi.data.payload.request.LoadDroneRequest;
-import com.droneserviceapi.data.payload.response.MessageResponse;
-import com.droneserviceapi.modal.Drone;
-import com.droneserviceapi.modal.LoadMedication;
+import com.droneserviceapi.data.payload.response.AvailableDroneResponse;
+import com.droneserviceapi.data.payload.response.DeliverDroneResponse;
+import com.droneserviceapi.data.payload.response.DroneBatteryDetailsResponse;
+import com.droneserviceapi.data.payload.response.DroneMedicationLoadRsponse;
+import com.droneserviceapi.data.payload.response.LoadDroneResponse;
+import com.droneserviceapi.data.payload.response.RegisterDroneResponse;
 import com.droneserviceapi.service.DroneSeriviceImpl;
 
 @RestController
-@RequestMapping("/api/drone")
+@RequestMapping(path="/api/drone")
 @Validated
 public class DroneMainController {
 	@Autowired
 	private DroneSeriviceImpl droneService;
 
-	@PostMapping(path = "/register", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<MessageResponse> registerDrone(
+	@PostMapping(path="/register", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<RegisterDroneResponse> registerDrone(
 			@Valid @NotNull @RequestBody DroneRegisterRequest dronerequest) {
-		MessageResponse newDrone = droneService.register(dronerequest);
-		return new ResponseEntity<MessageResponse>(newDrone, HttpStatus.CREATED);
+		RegisterDroneResponse newDrone = droneService.register(dronerequest);
+		return new ResponseEntity<RegisterDroneResponse>(newDrone, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/available")
-	public ResponseEntity<List<Drone>> getAvailableDroneForLoading() {
-		List<Drone> drones = droneService.getAvailabeDrones();
-		return new ResponseEntity<List<Drone>>(drones, HttpStatus.CREATED);
+	@GetMapping(path= "/available", produces = "application/json")
+	public ResponseEntity<AvailableDroneResponse> getAvailableDroneForLoading() {
+		AvailableDroneResponse drones = droneService.getAvailabeDrones();
+		return new ResponseEntity<AvailableDroneResponse>(drones, HttpStatus.OK);
 	}
 
-	@PostMapping("/battery")
-	public ResponseEntity<Drone> checkDroneBattery(
+	@PostMapping(path ="/battery", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<DroneBatteryDetailsResponse> checkDroneBattery(
 			@NotNull @RequestBody(required = true) DroneGetBatteryRequest drequest) {
 		if (drequest.getSerialNumber() == null || drequest.getSerialNumber().isEmpty()) {
 			throw new RuntimeException("SerialNumber is Required");
 		}
-		Drone newDrone = droneService.getBateryLevel(drequest);
-		return new ResponseEntity<Drone>(newDrone, HttpStatus.CREATED);
+		DroneBatteryDetailsResponse droneBattery = droneService.getBateryLevel(drequest);
+		return new ResponseEntity<DroneBatteryDetailsResponse>(droneBattery, HttpStatus.CREATED);
 	}
 
-	@PostMapping("/load")
-	public ResponseEntity<MessageResponse> loadDroneWithMedication(@NotNull @RequestBody LoadDroneRequest loadrequest) {
-		MessageResponse newDrone = droneService.loadDrone(loadrequest);
-		return new ResponseEntity<MessageResponse>(newDrone, HttpStatus.CREATED);
+	@PostMapping(path = "/load", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<LoadDroneResponse> loadDroneWithMedication(@Valid @NotNull @RequestBody LoadDroneRequest loadrequest) {
+		LoadDroneResponse loadDrone = droneService.loadDrone(loadrequest);
+		return new ResponseEntity<LoadDroneResponse>(loadDrone, HttpStatus.CREATED);
 	}
 
-	@GetMapping(path = "details/{serialNumber}")
-	public ResponseEntity<LoadMedication> checkLoadedMedicationItem(@PathVariable("serialNumber") String serialNumber) {
-		LoadMedication load = droneService.getLoadedMedicationForADrone(serialNumber);
-		return new ResponseEntity<LoadMedication>(load, HttpStatus.CREATED);
+	@GetMapping(path = "details/{serialNumber}", produces = "application/json")
+	public ResponseEntity<DroneMedicationLoadRsponse> checkLoadedMedicationItem(@PathVariable("serialNumber") String serialNumber) {
+		DroneMedicationLoadRsponse droneLoads = droneService.getLoadedMedicationForADrone(serialNumber);
+		return new ResponseEntity<DroneMedicationLoadRsponse>(droneLoads, HttpStatus.OK);
 	}
 
-	@PostMapping("/deliver")
-	public ResponseEntity<MessageResponse> droneMedicalLoadDelivery(@NotNull @RequestBody DroneDeliveryRequest deliverRequest) {
-		MessageResponse delivery = droneService.deliverLoad(deliverRequest);
-		return new ResponseEntity<MessageResponse>(delivery, HttpStatus.CREATED);
+	@PostMapping(path = "/deliver", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<DeliverDroneResponse> droneMedicalLoadDelivery(@NotNull @RequestBody DroneDeliveryRequest deliverRequest) {
+		DeliverDroneResponse delivery = droneService.deliverLoad(deliverRequest);
+		return new ResponseEntity<DeliverDroneResponse>(delivery, HttpStatus.CREATED);
 	}
 
 }

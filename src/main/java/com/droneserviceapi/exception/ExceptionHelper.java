@@ -1,4 +1,4 @@
-package com.droneserviceapi.service;
+package com.droneserviceapi.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,37 +21,26 @@ public class ExceptionHelper {
 		
 		System.out.println("exception is "+ ex.getMessage());
 
-		return new ResponseEntity<MessageResponse>(new MessageResponse("Invalid Input"),
+		return new ResponseEntity<MessageResponse>(new MessageResponse("failed",ex.getMessage(),java.time.LocalDateTime.now()),
 				HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = { Unauthorized.class })
 
-	public ResponseEntity<Object> handleUnauthorizedException(Unauthorized ex) {
+	public ResponseEntity<MessageResponse> handleUnauthorizedException(Unauthorized ex) {
 
 		logger.error("Unauthorized Exception: ", ex.getMessage());
 
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<MessageResponse>(new MessageResponse("failed",ex.getMessage(),java.time.LocalDateTime.now()), HttpStatus.BAD_REQUEST);
 
 	}
 
-//	@ExceptionHandler(value = { BusinessException.class })
-//
-//	public ResponseEntity<Object> handleBusinessException(BusinessException ex) {
-//
-//		logger.error("Business Exception: ", ex.getMessage());
-//
-//		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-//
-//	}
-
 	@ExceptionHandler(value = { Exception.class })
 
-	public ResponseEntity<Object> handleException(Exception ex) {
+	public ResponseEntity<MessageResponse> handleException(Exception ex) {
 
 		logger.error("Exception: ", ex.getMessage());
-
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<MessageResponse>(new MessageResponse("failed",ex.getMessage(),java.time.LocalDateTime.now()), HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
 

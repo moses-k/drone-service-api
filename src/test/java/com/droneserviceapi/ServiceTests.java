@@ -1,10 +1,12 @@
 package com.droneserviceapi;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -15,6 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.droneserviceapi.data.payload.response.AvailableDroneResponse;
 import com.droneserviceapi.modal.Drone;
 import com.droneserviceapi.repository.DroneRepository;
 import com.droneserviceapi.service.DroneSeriviceImpl;
@@ -43,12 +47,18 @@ class ServiceTests {
 		list.add(drone3);
 		list.add(drone4);
 		
+		LocalDateTime time = java.time.LocalDateTime.now();
+		AvailableDroneResponse availableDroneResponse = new AvailableDroneResponse();
+		availableDroneResponse.setStatus("success");
+		availableDroneResponse.setTimestamp(time);
+		availableDroneResponse.setDrones(list);
+		
 		String state = "IDLE";
 		when(droneRepository.findAllByState(state)).thenReturn(list);
 
 		// test
-		List<Drone> availableDrones = droneServiceImpl.getAvailabeDrones();
-		assertEquals(4, availableDrones.size()); //assertThat(availableDrones.size()).isEqualTo(4);
+		AvailableDroneResponse availableDrones = droneServiceImpl.getAvailabeDrones();
+		assertEquals(4, availableDrones.getDrones().size()); //assertThat(availableDrones.size()).isEqualTo(4);
 		verify(droneRepository, times(1)).findAllByState(state);
 	}
 
