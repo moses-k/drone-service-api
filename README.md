@@ -1,7 +1,6 @@
 
-## Drones
+## Drones Service REST API
 
-[[_TOC_]]
 
 ---
 
@@ -67,6 +66,23 @@ While implementing your solution **please take care of the following requirement
 - Required data must be preloaded in the database.
 - JUnit tests are optional but advisable (if you have time);
 - Advice: Show us how you work through your commit history.
+
+---
+### How to build
+
+#### Requirements
+
+-Java 8
+- Java IDE (Eclipse)
+-
+
+###Steps of building the project locally
+
+- Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
+
+
+
+
 
 ---
 
