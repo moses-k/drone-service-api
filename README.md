@@ -103,7 +103,7 @@ Password **admin**
 [![basic-auth.png](https://i.postimg.cc/XYd73QcL/basic-auth.png)](https://postimg.cc/RWCzL1YJ)
 
 ----
-- **registering a drone** localhost:8082/api/drone/register
+- **Registering a drone** localhost:8082/api/drone/register
 The payload should be in json format like this
 
 [![reg-drone-payload.png](https://i.postimg.cc/SNVH98Q4/reg-drone-payload.png)](https://postimg.cc/RN6P5Wnp)
@@ -113,7 +113,7 @@ The response should be
 [![reg-drone-response.png](https://i.postimg.cc/G20fRxKF/reg-drone-response.png)](https://postimg.cc/bGTgHbKr)
 
 ---
-- **checking available drones for loading;**
+- **Checking available drones for loading;**
 
 
 Before loading a drone with Medication you can first check the available drones to confirm that the drone is not in use
@@ -123,9 +123,11 @@ Before loading a drone with Medication you can first check the available drones 
 [![available.png](https://i.postimg.cc/m22BKTtb/available.png)](https://postimg.cc/DmD9XkrD)
 
 ---
-- **loading a drone with medication items;** 
+- **Loading a drone with medication items;** 
  
 **localhost:8082/api/drone/load**
+
+The payload will have the following fields
 
 - serialNumber is the unique serial for the drone being loaded
 - code id the unique code for the medication load being loaded to the drone
@@ -137,7 +139,7 @@ Before loading a drone with Medication you can first check the available drones 
 ---
 - **checking loaded medication items for a given drone;**
 
-**checking loaded medication items for a given drone;**
+**Checking loaded medication items for a given drone;**
 
 **localhost:8082/api/drone/details/Q23RT5676695**
 
@@ -147,14 +149,14 @@ Before loading a drone with Medication you can first check the available drones 
 
 ---
 
-- **check drone battery level for a given drone;**
+- **Check drone battery level for a given drone;**
 
 **localhost:8082/api/drone/battery**
 
 [![battery.png](https://i.postimg.cc/25v13CQs/battery.png)](https://postimg.cc/DWvvMkY6)
 
 ---
-- **delivery of medication item**
+- **Delivery of medication item**
 **localhost:8082/api/drone/deliver**
 
 When the drone delivers the item it call this end-point and its status is change drop loaded to delivering then delivered
