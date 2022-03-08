@@ -74,9 +74,10 @@ While implementing your solution **please take care of the following requirement
 
 - Java 8
 - Java IDE (Eclipse)
--
+- MYSQL databse (Locally Installed)
+- Postman(For testing ) 
 
-### Steps of building the project locally
+### Steps by step for building and runing the project locally
 
 - Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
 
