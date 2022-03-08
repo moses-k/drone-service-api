@@ -74,20 +74,107 @@ While implementing your solution **please take care of the following requirement
 
 - Java 8
 - Java IDE (Eclipse)
-- MYSQL databse (Locally Installed)
+- MYSQL databse (Optional you can use in-memory databse)
 - Postman(For testing ) 
 
 ### Steps by step for building and runing the project locally
 
-- Clone the from the link git clone https://github.com/moses-k/drone-service-api.git
+- Clone the from the link git clone https://oauth:glpat-KxCBHW2ez2iw-xhJ3D2K@gitlab.com/musala-coding-tasks-solutions/moses-kipyegon.git
 
 [![clone.png](https://i.postimg.cc/WbVX1KTf/clone.png)](https://postimg.cc/G9MkMXBk)
 
 - Open the cloned project in eclipse
 
-- [![what-companied-thinks.png](https://i.postimg.cc/DzRSy9kW/what-companied-thinks.png)](https://postimg.cc/8FBpZnCD)
+- Go to maven the update Project to update all the maven dependencies
+
+- Maven Build the project and run
+
+- Before running you can run the JUnit test cases to assert that everything is working correctly (I have included some of the JUnit tests)
 
 
+---
+
+### Testing the API
+- Some of the assumption made for the purpose of this API design are:-
+
+- Once the Medication is loaded to a specific drone it cannot be loaded to another drone at the same time.
+
+Open Postman
+For testing purpose the API is secured and you will have to specify the Authorization in the headers as Basic Auth
+
+Username **admin**
+
+Password **admin**
+
+Note: the ContentType is application/json
+
+[![basic-auth.png](https://i.postimg.cc/XYd73QcL/basic-auth.png)](https://postimg.cc/RWCzL1YJ)
+
+----
+- **Registering a drone** localhost:8082/api/drone/register
+The payload should be in json format like this
+
+[![reg-drone-payload.png](https://i.postimg.cc/SNVH98Q4/reg-drone-payload.png)](https://postimg.cc/RN6P5Wnp)
+
+The response should be 
+
+[![reg-drone-response.png](https://i.postimg.cc/G20fRxKF/reg-drone-response.png)](https://postimg.cc/bGTgHbKr)
+
+---
+- **Checking available drones for loading;**
+
+
+Before loading a drone with Medication you can first check the available drones to confirm that the drone is not in use
+
+**localhost:8082/api/drone/available**
+
+[![available.png](https://i.postimg.cc/m22BKTtb/available.png)](https://postimg.cc/DmD9XkrD)
+
+---
+- **Loading a drone with medication items;** 
+ 
+**localhost:8082/api/drone/load**
+
+The payload will have the following fields
+
+- serialNumber is the unique serial for the drone being loaded
+- code id the unique code for the medication load being loaded to the drone
+- source is the loading point
+- destination is where the load is being taken
+
+the Medication items to be loaded for testing are code : **WE232344, WE232345, WE232346, WE232347, WE232348, WE232349, WE2323510, WE2323511, WE2323512, WE2323513**
+
+the destination and the source are any places
+
+ - The serialNumber is the unique serialNumber a drone that you register
+
+[![load-drone.png](https://i.postimg.cc/YSNPpmsT/load-drone.png)](https://postimg.cc/94MbbzVB)
+
+---
+- **Checking loaded medication items for a given drone;**
+
+**localhost:8082/api/drone/details/Q23RT5676695**
+
+- Check which medication item is loaded to a specific drone.
+
+[![details.png](https://i.postimg.cc/T1xgTpBN/details.png)](https://postimg.cc/9RxrpFmy)
+
+---
+
+- **Check drone battery level for a given drone;**
+
+**localhost:8082/api/drone/battery**
+
+[![battery.png](https://i.postimg.cc/25v13CQs/battery.png)](https://postimg.cc/DWvvMkY6)
+
+---
+- **Delivery of medication item**
+
+**localhost:8082/api/drone/deliver**
+
+When the drone delivers the item it call this end-point and its status is change drop loaded to delivering then delivered
+
+[![deliver.png](https://i.postimg.cc/9FRCcJtS/deliver.png)](https://postimg.cc/KR2dN7Wr)
 
 
 

@@ -24,15 +24,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.authorizeRequests()
 		.antMatchers(
-                "/drone/registration**",
-                "/js/**",
-                "/css/**",
-                "/img/**",
-                "/webjars/**").permitAll()
-				.antMatchers("/api/users")
-				.hasAnyRole("ADMIN")
-				.anyRequest()
-				.fullyAuthenticated()
+                "/api/**").permitAll()
 				.and()
 				.httpBasic()
 				.and()

@@ -26,6 +26,8 @@ public interface DroneService {
 	LoadDroneResponse loadDrone(LoadDroneRequest loadRequest);
 	
 	DeliverDroneResponse deliverLoad(DroneDeliveryRequest loadRequest);
+	
+	void preLoadData();
 
 	
 }

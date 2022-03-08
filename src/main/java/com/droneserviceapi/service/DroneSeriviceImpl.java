@@ -1,5 +1,6 @@
 package com.droneserviceapi.service;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class DroneSeriviceImpl implements DroneService {
 		newdrone.setBattery(droneRequest.getBattery());
 		newdrone.setState(droneRequest.getState());
 		droneRepository.save(newdrone);
+		
 
 		RegisterDroneResponse droneResponse = new RegisterDroneResponse();
 		droneResponse.setResult("success");
@@ -99,10 +101,37 @@ public class DroneSeriviceImpl implements DroneService {
 
 	@Override
 	public LoadDroneResponse loadDrone(LoadDroneRequest loadRequest) {
-
+		//preload data
+		Medication medication1 = new Medication("WE232344","Covax",100,"sade23Rd");
+		Medication medication2 = new Medication("WE232345","Meloxicam",150,"sade2Y4d");
+		Medication medication3 = new Medication("WE232346","Metformin",200,"sade2U4d");
+		Medication medication4 = new Medication("WE232347","Acetaminophen",300,"sade2Q4d");
+		Medication medication5 = new Medication("WE232348","Amoxicillin",400,"sa3e234d");
+		Medication medication6 = new Medication("WE232349","Ativan",260,"sade237d");
+		Medication medication7 = new Medication("WE2323510","Atorvastatin",180,"sade2F4d");
+		Medication medication8 = new Medication("WE2323511","Azithromycin",400,"sade2B4d");
+		Medication medication9 = new Medication("WE2323512","Zyloprim",400,"sadeH34d");
+		Medication medication10 = new Medication("WE2323513","Diprolene ",400,"sade234J");
+		medicationRepository.save(medication1);
+		medicationRepository.save(medication2);
+		medicationRepository.save(medication3);
+		medicationRepository.save(medication4);
+		medicationRepository.save(medication5);
+		medicationRepository.save(medication6);
+		medicationRepository.save(medication7);
+		medicationRepository.save(medication8);
+		medicationRepository.save(medication9);
+		medicationRepository.save(medication10);
+		
 		droneRepository.setUpdateState("LOADING", loadRequest.getSerialNumber());
 		Drone drone = droneRepository.findBySerialNumber(loadRequest.getSerialNumber());
 		Medication medication = medicationRepository.findByCode(loadRequest.getCode());
+		LoadMedication checkLoad = loadDroneRepository.findByCode(loadRequest.getCode());
+		
+		if(checkLoad != null) {
+			throw new RuntimeException("Medication code has aready been loaded, try another one");
+
+		}
 
 		// validate before loading
 		if (drone == null) {
@@ -115,11 +144,11 @@ public class DroneSeriviceImpl implements DroneService {
 
 		if (drone.getWeightLimit() < medication.getWeight()) {
 			throw new RuntimeException("The Drone cannot load more than the weight limit");
-		}
+		}  
 		// check battery
-//			if(Integer.valueOf(drone.getBattery().toString()) <0.25){
-//				return new MessageResponse("The Drone cannot loaded, battery below 25%");
-//			}
+			if( drone.getBattery().compareTo(new BigDecimal(0.25)) < 0  ){
+				throw new RuntimeException("The Drone cannot be loaded, battery below 25%");
+			}
 		// load
 		LoadMedication loadMedication = new LoadMedication();
 		loadMedication.setDrone(drone);
@@ -162,5 +191,29 @@ public class DroneSeriviceImpl implements DroneService {
 
 		return deliverDroneResponse;
 	}
+	@Override
+	public void preLoadData() {
+		Medication medication1 = new Medication("WE232344","Covax",100,"sade23Rd");
+		Medication medication2 = new Medication("WE232345","Meloxicam",150,"sade2Y4d");
+		Medication medication3 = new Medication("WE232346","Metformin",200,"sade2U4d");
+		Medication medication4 = new Medication("WE232347","Acetaminophen",300,"sade2Q4d");
+		Medication medication5 = new Medication("WE232348","Amoxicillin",400,"sa3e234d");
+		Medication medication6 = new Medication("WE232349","Ativan",260,"sade237d");
+		Medication medication7 = new Medication("WE2323510","Atorvastatin",180,"sade2F4d");
+		Medication medication8 = new Medication("WE2323511","Azithromycin",400,"sade2B4d");
+		Medication medication9 = new Medication("WE2323512","Zyloprim",400,"sadeH34d");
+		Medication medication10 = new Medication("WE2323513","Diprolene ",400,"sade234J");
+		medicationRepository.save(medication1);
+		medicationRepository.save(medication2);
+		medicationRepository.save(medication3);
+		medicationRepository.save(medication4);
+		medicationRepository.save(medication5);
+		medicationRepository.save(medication6);
+		medicationRepository.save(medication7);
+		medicationRepository.save(medication8);
+		medicationRepository.save(medication9);
+		medicationRepository.save(medication10);
 
+	}
+ 
 }
